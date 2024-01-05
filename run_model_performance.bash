@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for target in exfoliation_energy dfpt_piezo_max_dij dfpt_piezo_max_eij slme spillage max_efg avg_elec_mass mbj_bandgap shear_modulus_gv bulk_modulus_kv p-Seebeck p-powerfact n-Seebeck n-powerfact epsy optb88vdw_bandgap formation_energy_peratom;do 
+for target in formation_energy_peratom optb88vdw_bandgap optb88vdw_total_energy ehull mbj_bandgap bulk_modulus_kv shear_modulus_gv magmom_oszicar slme spillage kpoint_length_unit encut epsx epsy epsz mepsx mepsy mepsz dfpt_piezo_max_dielectric dfpt_piezo_max_dij dfpt_piezo_max_eij exfoliation_energy max_efg avg_elec_mass avg_hole_mass n-Seebeck n-powerfact p-Seebeck p-powerfact;do 
 	for random_state in {0..4};do
 
 output_dir="output/$target/$random_state"
@@ -8,7 +8,11 @@ output_dir="output/$target/$random_state"
 mkdir -p $output_dir
 
 if [ -f $output_dir/prediction_results_test_set.csv ];then
+	echo "Found $output_dir/prediction_results_test_set.csv, skipping"
 	continue
+else
+	echo "working on $output_dir/prediction_results_test_set.csv"
+	#continue
 fi
 
 
@@ -56,7 +60,7 @@ cat > $config << EOF
     "num_workers": 8,
     "cutoff": 8.0,
     "max_neighbors": 12,
-    "keep_data_order": true,
+    "keep_data_order": false,
     "model": {
         "name": "alignn",
         "alignn_layers": 4,
