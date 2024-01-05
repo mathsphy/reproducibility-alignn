@@ -10,5 +10,6 @@ python reproduce_jdft2021.py --target $target --random_state $random_state
 ```
 - *run_model_performance.bash*: the bash script to run *reproduce_jdft2021.py* for all the properties considered in the reproducibility study.
 - *run_ablation.bash*: the bash script to run *reproduce_jdft2021.py* for the ablation analysis considered in the reproducibility study.
+- *plot.py*: the python script to generate the plot using the output data (see the Zenodo link below for the output data)
 
 **The generated output data and the python script for the figures and tables in the reproducibility paper can be found on [Zenodo](https://zenodo.org/records/10042543).**
